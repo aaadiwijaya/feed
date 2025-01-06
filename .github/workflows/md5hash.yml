@@ -3,7 +3,7 @@ name: Generate and Upload MD5 Hash
 on:
   push:
     paths:
-      - 'customfeed.txt'  # Trigger when customfeed.txt is modified
+      - 'adj.txt'  # Trigger when file.txt is modified
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Generate MD5 Hash
         run: |
           echo "Calculating MD5 Hash for blocklist.txt..."
-          md5sum customfeed.txt | cut -d ' ' -f1 | tee md5output.txt
+          md5sum adj.txt | cut -d ' ' -f1 | tee md5output.txt
           echo "MD5 Hash saved to md5output.txt."
 
       - name: Commit and Push MD5 Output
@@ -31,7 +31,7 @@ jobs:
           git add md5output.txt
           
           # Commit the changes
-          git commit -m "Add generated MD5 hash for customfeed.txt"
+          git commit -m "Add generated MD5 hash for adj.txt"
           
           # Push the changes back to the repository
           git push
